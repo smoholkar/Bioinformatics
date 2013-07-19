@@ -1,0 +1,85 @@
+Sonali Moholkar                                                                                                                                         Hw-2 Part 1
+
+
+
+Instructions to run my program
+
+
+
+• When you run the program in visual studio  it will prompt you to enter “full path” of the 
+
+
+
+input.txt  which is the Input_concepts.txt that you have given . I have renamed the file as 
+
+
+
+input.txt and I have attached it.
+
+
+
+• After entering the input file it will ask you to enter the “full path” of  metathesaurus  file 
+
+
+
+Which is the “rrf” file that you sent us. I’ve renamed it as “meta.rrf “
+
+
+
+• Now it will ask you to print the name of the text file where you want your output. So simply type 
+
+
+
+in any name eg “op.txt” and then when you check for it in your system , op.txt will be created 
+
+
+
+and you can see the expected output in your text file.
+
+
+
+Things I have attached
+
+
+
+• Executable
+
+
+
+• Input.txt -‡ you provided it. I just renamed it for simplicity.
+
+
+
+• Meta.rrf-‡ you provided it. I renamed it for simplicity- 
+
+
+
+• Tokenizer.h -‡my code
+
+
+
+• Tokenizer.cpp-‡ my code
+
+
+
+• Main.cpp-‡my code
+
+
+
+• Op.txt-‡ output generated
+
+
+
+For simplicity I included all the above input files in my visual studio project that I created so all had 
+
+
+
+the same path . So my program code and all the files listed above where stored inside my visual studio 
+
+
+
+project that I created. 
+
+
+
+While giving paths please include  “\\” and not single slash.
