@@ -1,0 +1,37 @@
+//tokenizer.cpp
+
+#include "tokenizer.h"
+
+bool Tokenizer::getToken(string& token)
+{
+  char tok[1024];
+	int i = 0;
+	char c;
+
+	for(;;)
+		// if you reach eof, stop
+	{
+		c = from.get();
+		if(from.eof()) break;
+		if(seperator.find(c, 0) != string::npos)
+			break;
+		if(c == '\n')
+			continue;
+		tok[i++] = c;
+	}
+	tok[i] = '\0';
+	token = tok;
+
+	if(i == 0)
+		return false;
+	return true;
+}
+
+bool Tokenizer::skipTokens(int skip)
+{
+	string temp;
+	for(int i = 0;i < skip;i++)
+		getToken(temp);
+	
+	return true;
+}
