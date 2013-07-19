@@ -1,0 +1,101 @@
+
+#include <iostream>
+#include <conio.h>
+
+#include "tokenizer.h"
+
+using namespace std;
+
+class childrenGenerator{
+private: string ip_name, metathesarus_name, op_name;
+  	 Tokenizer ip, meta;
+		 ofstream to;
+
+public: childrenGenerator(string ip_s, string meta_s, string op) : ip(ip_s, "\t\n"), meta(meta_s, "|")
+		{
+			ip_name = ip_s; metathesarus_name = meta_s; op_name = op;
+			to.open(op_name);
+		}
+		void generateOutput();
+		~childrenGenerator()
+		{
+			to.close();
+		}
+
+};
+
+int main()
+{
+	string ip_name, meta_name, op_name;
+	cout<<"\nEnter the full path of the input file : ";
+	cin>>ip_name;
+	cout<<"\nEnter the full path of the metathesarus file : ";
+	cin>>meta_name;
+	cout<<"\nEnter the full path of the output file to be generated : ";
+	cin>>op_name;
+	
+	try
+	{
+		childrenGenerator c(ip_name, meta_name, op_name);
+		c.generateOutput();
+		cout<<"\nGenerating output. Please wait.......";
+	}
+	catch(string s)
+	{
+		cerr<<s;
+		getch();
+		exit(1);
+	}
+	
+	cout<<"\nDone generating. Please check the output file.";
+	return 0;
+}
+
+
+void childrenGenerator::generateOutput()
+{
+	for(;;)
+		// infinite loop
+	{
+		string tok;
+		if(!ip.getToken(tok))
+			break;
+		string cui = tok;
+		to<<cui<<'\t';
+		ip.getToken(tok);
+		to<<tok<<'\t';
+
+		bool flag = false;
+		for(;;)
+		{
+			// start searching the cui in the metathesarus
+			meta.getToken(tok);
+			if(tok != cui)
+			{
+				if(flag)
+					break;
+				meta.skipTokens(15);
+				continue;
+			}
+			else
+			{
+				flag = true;
+				meta.skipTokens(2);
+				meta.getToken(tok);
+				if(tok != "CHD")
+				{
+					meta.skipTokens(12);
+					continue;
+				}
+				else
+				{
+					meta.getToken(tok);
+					to<<tok<<';';
+					meta.skipTokens(11);
+				}
+			}
+		}// end inner for
+		to<<'\n';
+		meta.reset();
+	}// end for
+}
