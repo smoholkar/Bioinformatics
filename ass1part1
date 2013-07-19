@@ -1,0 +1,35 @@
+//#ifndef __TOKEN_H_
+//#define __TOKEN_H_
+
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+class Tokenizer{
+private: string filename;
+  	 string seperator;
+		 ifstream from;
+
+public: Tokenizer(string fname, string sep) 
+		{
+			filename = fname;
+			seperator = sep;
+			from.open(filename);
+			if(!from)
+				throw string("Error! Cannnot open file " + fname);
+		}
+		bool getToken(string&);
+		bool skipTokens(int);
+		void reset()
+		{
+			from.seekg(ios::beg);
+		}
+		~Tokenizer()
+		{
+			from.close();
+		}
+
+};
+
+//#endif
